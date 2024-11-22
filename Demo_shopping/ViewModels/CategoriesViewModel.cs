@@ -2,6 +2,6 @@
 {
 	public class CategoriesViewModel
 	{
-		public int Id { get; set; }
+		
 	}
 }

@@ -1,4 +1,4 @@
-using Demo_shopping.Models;
+using Demo_shopping.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
