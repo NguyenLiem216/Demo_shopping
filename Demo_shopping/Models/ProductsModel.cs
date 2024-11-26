@@ -25,5 +25,7 @@ namespace Demo_shopping.Models
 
 		public CategoriesModel Category { get; set; }
 		public BrandsModel Brand { get; set; }
+
+		public string Image {  get; set; }
 	}
 }

@@ -19,6 +19,6 @@ namespace Demo_shopping.Models
 		[Required]
 		public string Slug { get; set; }
 
-		public int Status { get; set; }
+		public int Status { get; set; } 
 	}
 }
