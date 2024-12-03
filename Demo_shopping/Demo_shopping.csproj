@@ -21,9 +21,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Middlewares\" />
-    <Folder Include="Areas\" />
     <Folder Include="Services\" />
+    <Folder Include="wwwroot\admin\" />
   </ItemGroup>
 
 </Project>

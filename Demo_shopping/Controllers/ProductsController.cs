@@ -24,7 +24,7 @@ namespace Demo_shopping.Controllers
             var productsById = _context.Products.Where(p => p.Id == Id).FirstOrDefault();
 
             return View(productsById);
-            
+
         }
     }
 }

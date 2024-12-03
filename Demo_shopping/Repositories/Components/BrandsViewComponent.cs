@@ -4,15 +4,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Demo_shopping.Repositories.Components
 {
-	public class BrandsViewComponent : ViewComponent
-	{
-		private readonly DataContext _context;
+    public class BrandsViewComponent : ViewComponent
+    {
+        private readonly DataContext _context;
 
-		public BrandsViewComponent(DataContext context)
-		{
-			_context = context;
-		}
+        public BrandsViewComponent(DataContext context)
+        {
+            _context = context;
+        }
 
-		public async Task<IViewComponentResult> InvokeAsync() => View(await _context.Brands.ToListAsync());
-	}
+        public async Task<IViewComponentResult> InvokeAsync() => View(await _context.Brands.ToListAsync());
+    }
 }

@@ -2,11 +2,11 @@
 
 namespace Demo_shopping.Controllers
 {
-	public class CheckoutsController : Controller
-	{
-		public IActionResult Index()
-		{
-			return View();
-		}
-	}
+    public class CheckoutsController : Controller
+    {
+        public IActionResult Index()
+        {
+            return View();
+        }
+    }
 }

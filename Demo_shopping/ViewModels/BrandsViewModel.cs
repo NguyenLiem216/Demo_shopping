@@ -1,7 +1,7 @@
 ﻿namespace Demo_shopping.ViewModels
 {
-	public class BrandsViewModel
-	{
-		
-	}
+    public class BrandsViewModel
+    {
+
+    }
 }

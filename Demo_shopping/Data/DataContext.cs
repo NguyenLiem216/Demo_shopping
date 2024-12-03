@@ -1,7 +1,5 @@
 ﻿using Demo_shopping.Models;
-using Demo_shopping.ViewModels;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore;
 
 namespace Demo_shopping.Data
 {

@@ -11,7 +11,7 @@ namespace Demo_shopping.Models
         {
             get { return Quantity * Price; }
         }
-        public string Image {  get; set; }
+        public string Image { get; set; }
         public CartItemModel()
         {
 

@@ -9,9 +9,9 @@ namespace Demo_shopping.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-		private readonly DataContext _context;
+        private readonly DataContext _context;
 
-		public HomeController(ILogger<HomeController> logger, DataContext context)
+        public HomeController(ILogger<HomeController> logger, DataContext context)
         {
             _logger = logger;
             _context = context;
