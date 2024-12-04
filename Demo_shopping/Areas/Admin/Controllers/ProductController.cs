@@ -1,5 +1,6 @@
 ﻿using Demo_shopping.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace Demo_shopping.Areas.Admin.Controllers
@@ -21,6 +22,13 @@ namespace Demo_shopping.Areas.Admin.Controllers
                             .OrderByDescending(p => p.Id)
                             .ToListAsync();
             return View(products);
+        }
+
+        public async Task<IActionResult> Create()
+        {
+            ViewBag.Categories = new SelectList(_context.Categories, "Id", "Name");
+
+            return View();
         }
     }
 }
