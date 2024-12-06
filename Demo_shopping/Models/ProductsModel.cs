@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Demo_shopping.Models
 {
@@ -7,15 +9,15 @@ namespace Demo_shopping.Models
         [Key]
         public int Id { get; set; }
 
-        [Required]
-        [MinLength(4, ErrorMessage = "Yêu cầu nhập Tên Sản phẩm")]
+        [Required(ErrorMessage = "Yêu cầu nhập Tên Sản phẩm")]
+        [MinLength(4, ErrorMessage = "Tên Sản phẩm phải có ít nhất 4 ký tự")]
         public string Name { get; set; }
 
-        [Required]
-        [MinLength(4, ErrorMessage = "Yêu cầu nhập Mô tả Sản phẩm")]
+        [Required(ErrorMessage = "Yêu cầu nhập Mô tả Sản phẩm")]
+        [MinLength(4, ErrorMessage = "Mô tả Sản phẩm phải có ít nhất 4 ký tự")]
         public string Description { get; set; }
-        [Required]
-        [MinLength(4, ErrorMessage = "Yêu cầu nhập Giá Sản phẩm")]
+        [Required(ErrorMessage = "Yêu cầu nhập Giá Sản phẩm")]
+        [MinLength(4, ErrorMessage = "Giá Sản phẩm phải có ít nhất 4 ký tự")]
         public decimal Price { get; set; }
         [Required]
         public string Slug { get; set; }
@@ -27,5 +29,8 @@ namespace Demo_shopping.Models
         public BrandsModel Brand { get; set; }
 
         public string Image { get; set; }
+        [NotMapped]
+        [FileExtensions]
+        public IFormFile ImageUpload { get; set; }
     }
 }

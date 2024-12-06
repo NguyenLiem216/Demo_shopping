@@ -1,6 +1,8 @@
-using Demo_shopping.Data;
+﻿using Demo_shopping.Data;
 using Demo_shopping.SeedData;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
+using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -45,10 +47,6 @@ app.MapControllerRoute(
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-
-
-
-
 
 // Seeding Data
 var context = app.Services.CreateScope().ServiceProvider.GetRequiredService<DataContext>();
