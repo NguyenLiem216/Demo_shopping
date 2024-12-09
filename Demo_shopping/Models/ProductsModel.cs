@@ -17,7 +17,7 @@ namespace Demo_shopping.Models
         [MinLength(4, ErrorMessage = "Mô tả Sản phẩm phải có ít nhất 4 ký tự")]
         public string Description { get; set; }
         [Required(ErrorMessage = "Yêu cầu nhập Giá Sản phẩm")]
-        [MinLength(4, ErrorMessage = "Giá Sản phẩm phải có ít nhất 4 ký tự")]
+        [Range(1, double.MaxValue, ErrorMessage = "Giá Sản phẩm phải lớn hơn 0")]
         public decimal Price { get; set; }
         [Required]
         public string Slug { get; set; }

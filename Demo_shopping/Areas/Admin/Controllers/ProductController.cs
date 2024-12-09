@@ -2,6 +2,7 @@
 using Demo_shopping.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 
 namespace Demo_shopping.Areas.Admin.Controllers
@@ -34,10 +35,30 @@ namespace Demo_shopping.Areas.Admin.Controllers
         }
         public async Task<IActionResult> Create(ProductsModel products)
         {
-			ViewBag.Categories = new SelectList(_context.Categories, "Id", "Name", products.CategoryId);
-			ViewBag.Brands = new SelectList(_context.Brands, "Id", "Name",products.BrandId);
-            
+            ViewBag.Categories = new SelectList(_context.Categories, "Id", "Name", products.CategoryId);
+            ViewBag.Brands = new SelectList(_context.Brands, "Id", "Name", products.BrandId);
+
+            if (ModelState.IsValid)
+            {
+                //Them du lieu
+            }
+            else
+            {
+                TempData["error"] = "Model đang bị lỗi";
+                List<string> errors = new List<string>();
+                foreach (var value in ModelState.Values)
+                {
+                    foreach (var error in value.Errors)
+                    {
+                        errors.Add(error.ErrorMessage);
+                    }
+                }
+
+                string errorMessage = string.Join("\n", errors);
+                return BadRequest(errorMessage);
+            }
+
             return View(products);
-		}
-	}
+        }
+    }
 }
