@@ -36,10 +36,10 @@
                         <tr>
                             <td>@product.Id</td>
                             <td>@product.Name</td>
-                            <td>@product.Description</td>
+                            <td>@Html.Raw(product.Description)</td>
                             <td>@product.Price.ToString("C")</td>
                             <td>@product.Category?.Name</td>
-                            <td><img src="~/images/@product.Image" width="120"></td>
+                            <td><img src="~/media/products/@product.Image" width="120" alt="@product.Name" /></td>
                             <td>@product.Slug</td>
                             <td>@product.Brand?.Name</td>
                             <td>

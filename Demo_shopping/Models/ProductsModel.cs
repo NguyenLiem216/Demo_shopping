@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using Demo_shopping.Repositories.Validations;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -19,7 +20,6 @@ namespace Demo_shopping.Models
         [Required(ErrorMessage = "Yêu cầu nhập Giá Sản phẩm")]
         [Range(1, double.MaxValue, ErrorMessage = "Giá Sản phẩm phải lớn hơn 0")]
         public decimal Price { get; set; }
-        [Required]
         public string Slug { get; set; }
 
         public int BrandId { get; set; }
@@ -30,7 +30,7 @@ namespace Demo_shopping.Models
 
         public string Image { get; set; }
         [NotMapped]
-        [FileExtensions]
+        [FileExtension]
         public IFormFile ImageUpload { get; set; }
     }
 }
