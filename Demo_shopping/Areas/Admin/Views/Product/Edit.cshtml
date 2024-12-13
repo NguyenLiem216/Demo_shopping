@@ -1,0 +1,113 @@
+﻿@model ProductsModel
+@{
+    ViewData["Title"] = "Edit Product";
+}
+<style>
+    .action-buttons {
+        display: flex;
+        justify-content: space-between; /* Căn nút về hai phía */
+        align-items: center;
+        margin-top: 10px; /* Khoảng cách từ phần trên */
+    }
+
+        .action-buttons .btn {
+            border-radius: 5px; /* Bo góc cho nút */
+        }
+</style>
+
+<h2 class="text-center my-4">Sửa sản phẩm </h2>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Thông tin sản phẩm</h4>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Edit" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+                        <!-- Tên sản phẩm -->
+                        <div class="mb-3">
+                            <label for="Name" class="form-label">Tên sản phẩm</label>
+                            <input asp-for="Name" class="form-control" />
+                            <span asp-validation-for="Name" class="text-danger" />
+                        </div>
+                        <!-- Giá -->
+                        <div class="mb-3">
+                            <label for="Price" class="form-label">Giá</label>
+                            <input asp-for="Price" class="form-control" placeholder="Nhập giá sản phẩm" />
+                            <span asp-validation-for="Price" class="text-danger" />
+                        </div>
+
+                        <!-- Mô tả -->
+                        <div class="mb-3">
+                            <label for="Description" class="form-label">Mô tả</label>
+                            <textarea asp-for="Description" class="form-control" rows="4" placeholder="Nhập mô tả sản phẩm"></textarea>
+                            <span asp-validation-for="Description" class="text-danger" />
+                        </div>
+                        <!-- Danh mục -->
+                        <div class="mb-3">
+                            <label for="CategoryId" class="form-label">Danh mục</label>
+                            <select asp-for="CategoryId" class="form-select" asp-items="ViewBag.Categories">
+                                <option value="">-- Chọn danh mục --</option>
+                            </select>
+                            <span asp-validation-for="CategoryId" class="text-danger" />
+                        </div>
+                        <!-- Thương hiệu -->
+                        <div class="mb-3">
+                            <label for="BrandId" class="form-label">Thương hiệu</label>
+                            <select asp-for="BrandId" class="form-select" asp-items="ViewBag.Brands">
+                                <option value="">-- Chọn thương hiệu --</option>
+                            </select>
+                            <span asp-validation-for="BrandId" class="text-danger" />
+                        </div>
+                        <!-- Hình ảnh -->
+                        <div class="mb-3">
+                            <label for="Image" class="form-label">Hình ảnh</label>
+                            <input asp-for="ImageUpload" class="form-control" />
+                            <span asp-validation-for="ImageUpload" class="text-danger" />
+                            <td><img src="~/media/products/@Model.Image" width="120" />
+                        </div>
+                        <!-- Nút hành động -->
+                        <div class="action-buttons">
+                            <a asp-action="Index" asp-controller="Product" class="btn btn-warning">
+                                <i class="fa fa-arrow-left"></i> Quay lại danh sách
+                            </a>
+                            <button type="submit" class="btn btn-success">
+                                <i class="fa fa-check"></i> Lưu
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
+
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#Description'), {
+                toolbar: [
+                    'heading', '|',
+                    'bold', 'italic', 'underline', 'strikethrough', '|',
+                    'bulletedList', 'numberedList', '|',
+                    'fontSize', 'fontColor', 'fontBackgroundColor', '|',
+                    'link', 'blockQuote', '|',
+                    'undo', 'redo'
+                ]
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+
+}
+
