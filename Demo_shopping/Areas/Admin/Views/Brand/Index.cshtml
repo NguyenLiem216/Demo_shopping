@@ -1,16 +1,16 @@
-﻿@model IEnumerable<Demo_shopping.Models.CategoriesModel>
+﻿@model IEnumerable<Demo_shopping.Models.BrandsModel>
 @{
-    ViewData["title"] = "Category_Listed";
+    ViewData["title"] = "Brand_Listed";
 }
 
 <div class="container-fluid pt-4 px-4">
     <div class="bg-light rounded p-4">
         <div class="d-flex justify-content-between align-items-center mb-2">
-            <h3 class="mb-0">Danh sách danh mục</h3>
-            <a asp-action="Create" asp-controller="Category"
+            <h3 class="mb-0">Danh sách thương hiệu</h3>
+            <a asp-action="Create" asp-controller="Brand"
                class="btn btn-primary btn-rounded px-4 py-2 d-flex align-items-center"
                style="border-radius: 4px; margin-bottom: 10px">
-                <i class="fas fa-plus-circle me-2"></i> Thêm danh mục
+                <i class="fas fa-plus-circle me-2"></i> Thêm thương hiệu
             </a>
         </div>
 
@@ -20,10 +20,10 @@
                 <thead>
                     <tr class="text-dark">
                         <th scope="col">#</th>
-                        <th scope="col">Tên danh mục</th>
-                        <th scope="col">Mô tả danh mục</th>
+                        <th scope="col">Tên thương hiệu</th>
+                        <th scope="col">Mô tả thương hiệu</th>
                         <th scope="col">Slug</th>
-                        <th scope="col">Trạng thái danh mục</th>
+                        <th scope="col">Trạng thái thương hiệu</th>
                         <th scope="col">Thao tác</th>
                     </tr>
                 </thead>
@@ -39,9 +39,9 @@
                             <td>@Html.Raw(product.Description)</td>
                             <td>@product.Slug</td>
                             <td>
-                                @if(@product.Status == 1)
+                                @if (@product.Status == 1)
                                 {
-                                   <span class="text text-success">Sử dụng</span>
+                                    <span class="text text-success">Sử dụng</span>
                                 }
                                 else
                                 {
@@ -49,10 +49,10 @@
                                 }
                             </td>
                             <td>
-                                <a asp-action="Edit" asp-controller="Category" asp-route-Id="@product.Id" class="btn btn-sm btn-warning me-2">
+                                <a asp-action="Edit" asp-controller="Brand" asp-route-Id="@product.Id" class="btn btn-sm btn-warning me-2">
                                     <i class="fas fa-edit"></i> Sửa
                                 </a>
-                                <a asp-action="Delete" asp-controller="Category" asp-route-Id="@product.Id" class="btn btn-sm btn-danger confirmDeletion">
+                                <a asp-action="Delete" asp-controller="Brand" asp-route-Id="@product.Id" class="btn btn-sm btn-danger confirmDeletion">
                                     <i class="fa fa-trash"></i> Xóa
                                 </a>
                             </td>

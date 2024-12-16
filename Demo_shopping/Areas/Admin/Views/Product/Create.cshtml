@@ -68,6 +68,7 @@
                             <label for="Image" class="form-label">Hình ảnh</label>
                             <input asp-for="ImageUpload" class="form-control" />
                             <span asp-validation-for="ImageUpload" class="text-danger" />
+                            <img id="imgpreview" class="pt-2" />
                         </div>
                         <!-- Nút hành động -->
                         <div class="action-buttons">
@@ -90,6 +91,11 @@
     }
 
     <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
+    <script>
+        $("#ImageUpload").change(function(){
+            readURL(this);
+        })
+    </script>
 
     <script>
         ClassicEditor
