@@ -1,5 +1,7 @@
 ﻿using Demo_shopping.Data;
+using Demo_shopping.Models;
 using Demo_shopping.SeedData;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using System.Globalization;
@@ -23,6 +25,24 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
+builder.Services.AddIdentity<AppUserModel,IdentityRole>()
+	.AddEntityFrameworkStores<DbContext>().AddDefaultTokenProviders();
+
+builder.Services.Configure<IdentityOptions>(options =>
+{
+	// Password settings.
+	options.Password.RequireDigit = true;
+	options.Password.RequireLowercase = true;
+	options.Password.RequireNonAlphanumeric = false;
+	options.Password.RequireUppercase = false;
+	options.Password.RequiredLength = 6;
+	options.Password.RequiredUniqueChars = 1;
+
+	
+	options.User.RequireUniqueEmail = true;
+});
+
+
 var app = builder.Build();
 
 app.UseStatusCodePagesWithRedirects("/Home/Error?statuscode={0}");
@@ -39,6 +59,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
