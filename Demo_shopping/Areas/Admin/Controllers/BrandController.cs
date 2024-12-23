@@ -1,12 +1,14 @@
 ﻿using Demo_shopping.Data;
 using Demo_shopping.Helpers;
 using Demo_shopping.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Demo_shopping.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
     public class BrandController : Controller
     {
         private readonly DataContext _context;
