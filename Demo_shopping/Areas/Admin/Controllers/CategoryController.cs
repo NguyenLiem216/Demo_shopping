@@ -1,6 +1,7 @@
 ﻿using Demo_shopping.Data;
 using Demo_shopping.Helpers;
 using Demo_shopping.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -8,23 +9,28 @@ using Microsoft.EntityFrameworkCore;
 namespace Demo_shopping.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
+
     public class CategoryController : Controller
     {
         private readonly DataContext _context;
 
-        public CategoryController(DataContext context)
+        public CategoryController(DataContext context)  
         {
             _context = context;
         }
+
         public async Task<IActionResult> Index()
         {            
             return View(await _context.Categories.OrderByDescending(p=>p.Id).ToListAsync());
         }
+
         [HttpGet]
         public async Task<IActionResult> Create()
         {
             return View();
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CategoriesModel categories)

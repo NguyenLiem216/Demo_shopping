@@ -14,5 +14,7 @@ namespace Demo_shopping.Data
         public DbSet<BrandsModel> Brands { get; set; }
         public DbSet<ProductsModel> Products { get; set; }
         public DbSet<CategoriesModel> Categories { get; set; }
+        public DbSet<OrderModel> Orders { get; set; }
+        public DbSet<OrderDetailsModel> OrderDetails { get; set; }
     }
 }
