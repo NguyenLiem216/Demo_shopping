@@ -20,5 +20,10 @@ namespace Demo_shopping.Areas.Admin.Controllers
         {
             return View(await _context.Orders.OrderByDescending(p=>p.Id).ToListAsync());
         }
+        public async Task<IActionResult> ViewOrder(string ordercode)
+        {
+            var DetailsOrder = await _context.OrderDetails.Include(o=>o.Products).Where(o=>o.OrderCode==ordercode).ToListAsync();
+            return View(DetailsOrder);
+        }
     }
 }

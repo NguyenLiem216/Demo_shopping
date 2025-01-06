@@ -1,4 +1,6 @@
-﻿namespace Demo_shopping.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Demo_shopping.Models
 {
     public class OrderDetailsModel
     {
@@ -8,5 +10,8 @@
         public long ProductId { get; set; }
         public decimal Price { get; set; }
         public int Quantity { get; set; }
+
+        //[ForeignKey("ProductId")]
+        public ProductsModel Products { get; set; }
     }
 }

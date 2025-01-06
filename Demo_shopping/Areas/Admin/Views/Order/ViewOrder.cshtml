@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Demo_shopping.Models.OrderModel>
+﻿@model IEnumerable<Demo_shopping.Models.OrderDetailsModel>
 
 @{
     ViewData["Title"] = "Đơn hàng";
@@ -11,7 +11,7 @@
             <a asp-action="Create" asp-controller="Category"
                class="btn btn-primary btn-rounded px-4 py-2 d-flex align-items-center"
                style="border-radius: 4px; margin-bottom: 10px">
-                <i class="fas fa-plus-circle me-2"></i> Thêm 
+                <i class="fas fa-plus-circle me-2"></i> Thêm
             </a>
         </div>
 
@@ -23,7 +23,7 @@
                         <th scope="col">#</th>
                         <th scope="col">Mã đơn hàng</th>
                         <th scope="col">Tên người đặt hàng</th>
-                        <th scope="col">Ngày tạo đơn hàng</th>          
+                        <th scope="col">Ngày tạo đơn hàng</th>
                         <th scope="col">Trạng thái đơn hàng</th>
                         <th scope="col">Thao tác</th>
                     </tr>
@@ -37,7 +37,7 @@
                         <tr>
                             <td>@index</td>
                             <td>@product.OrderCode</td>
-                            <td>@product.UserName</td>
+                            @* <td>@product.UserName</td>
                             <td>@product.CreatedDate</td>
                             <td>
                                 @if (@product.Status == 1)
@@ -48,15 +48,7 @@
                                 {
                                     <span class="text text-danger">Đơn hàng đã duyệt</span>
                                 }
-                            </td>
-                            <td>
-                                <a asp-action="ViewOrder" asp-controller="Order" asp-route-ordercode="@product.OrderCode" class="btn btn-sm btn-warning me-2">
-                                    <i class="fas fa-edit"></i> Xem đơn hàng
-                                </a>
-                                <a asp-action="Delete" asp-controller="Order" asp-route-Id="@product.Id" class="btn btn-sm btn-danger confirmDeletion">
-                                    <i class="fa fa-trash"></i> Xóa
-                                </a>
-                            </td>
+                            </td> *@                            
                         </tr>
                         index--;
                     }

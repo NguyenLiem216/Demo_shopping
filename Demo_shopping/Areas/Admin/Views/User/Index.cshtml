@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Demo_shopping.Models.AppUserModel>
+@{
+    ViewData["title"] = "List User";
+}
+
+<div class="container-fluid pt-4 px-4">
+    <div class="bg-light rounded p-4">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+            <h3 class="mb-0">Danh sách tài khoản</h3>
+            <a asp-action="Create" asp-controller="User"
+               class="btn btn-primary btn-rounded px-4 py-2 d-flex align-items-center"
+               style="border-radius: 4px; margin-bottom: 10px">
+                <i class="fas fa-plus-circle me-2"></i> Thêm tài khoản
+            </a>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-sm text-start align-middle table-bordered table-hover mb-0">
+
+                <thead>
+                    <tr class="text-dark">
+                        <th scope="col">#</th>
+                        <th scope="col">Tên tài khoản</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Mật khẩu</th>
+                        <th scope="col">Số điện thoại</th>
+                        <th scope="col">Vai trò</th>
+                        <th scope="col">Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        int index = Model.Count();
+                    }
+                    @foreach (var user in Model)
+                    {
+                        <tr>
+                            <td>@index</td>
+                            <td>@user.UserName</td>
+                            <td>@user.Email</td>
+                            <td>@user.PasswordHash</td>
+                            <td>@user.PhoneNumber</td>  
+                            <td></td>
+                            <td>
+                                <a asp-action="Edit" asp-controller="User" asp-route-Id="@user.Id" class="btn btn-sm btn-warning me-2">
+                                    <i class="fas fa-edit"></i> Sửa
+                                </a>    
+                                <a asp-action="Delete" asp-controller="User" asp-route-Id="@user.Id" class="btn btn-sm btn-danger confirmDeletion">
+                                    <i class="fa fa-trash"></i> Xóa
+                                </a>
+                            </td>
+                        </tr>
+                        index--;
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
