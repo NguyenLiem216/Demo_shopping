@@ -1,6 +1,6 @@
 ﻿@model AppUserModel
 @{
-    ViewData["Title"] = "Create User";
+    ViewData["Title"] = "Edit User";
 }
 <style>
     .action-buttons {
@@ -25,7 +25,8 @@
                     <h4 class="mb-0">Thông tin tài khoản</h4>
                 </div>
                 <div class="card-body">
-                    <form asp-action="Create" enctype="multipart/form-data">
+                    <form asp-action="Edit" enctype="multipart/form-data">
+                        <input type="hidden" asp-for="Id" />
                         <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
 
                         <!-- Tên -->
@@ -51,26 +52,26 @@
 
                         <!-- Password -->
                         <div class="mb-3">
-                            <label for="Password" class="form-label">Mật khẩu</label>
-                            <input asp-for="PasswordHash" required class="form-control" />
+                            <label for="Password" class="form-label">Mật khẩu hiện tại</label>
+                            <input asp-for="PasswordHash" readonly required class="form-control" />
                             <span asp-validation-for="PasswordHash" class="text-danger" />
                         </div>
 
                         <!-- Roles -->
                         <div class="mb-3">
-                        <label for="RoleId" class="form-label">Vai trò</label>
-                        <select asp-for="RoleId" asp-items="ViewBag.Roles" class="form-control">
-                        </select>
-                        <span asp-validation-for="RoleId" class="text-danger" />
+                            <label for="RoleId" class="form-label">Vai trò</label>
+                            <select asp-for="RoleId" asp-items="ViewBag.Roles" class="form-control">
+                            </select>
+                            <span asp-validation-for="RoleId" class="text-danger" />
                         </div>
 
                         <!-- Nút hành động -->
                         <div class="action-buttons">
-                            <a asp-action="Index" asp-controller="Product" class="btn btn-warning">
+                            <a asp-action="Index" asp-controller="User" class="btn btn-warning">
                                 <i class="fa fa-arrow-left"></i> Quay lại danh sách
                             </a>
                             <button type="submit" class="btn btn-success">
-                                <i class="fa fa-check"></i> Tạo
+                                <i class="fa fa-check"></i> Sửa
                             </button>
                         </div>
                     </form>

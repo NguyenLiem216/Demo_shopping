@@ -71,11 +71,12 @@
 							<ul class="nav navbar-nav collapse navbar-collapse">
 								<li><a asp-action="Index" asp-controller="Product" class="active">Home</a></li>
 								
-								<li><a asp-controller="Product">Manage Products</a></li>
-								<li><a asp-controller="Category">Manage Categories</a></li>
-								<li><a asp-controller="Brand">Manage Brands</a></li>
-								<li><a asp-controller="Order">Manage Orders</a></li>
-								<li><a asp-controller="User">Manage User</a></li>
+								<li><a asp-controller="Product" asp-action="Index">Manage Products</a></li>
+								<li><a asp-controller="Category" asp-action="Index">Manage Categories</a></li>
+								<li><a asp-controller="Brand" asp-action="Index">Manage Brands</a></li>
+								<li><a asp-controller="Order" asp-action="Index">Manage Orders</a></li>
+								<li><a asp-controller="Roles" asp-action="Index">Manage Roles</a></li>
+								<li><a asp-controller="User" asp-action="Index">Manage User</a></li>
 							</ul>
 						</div>
 					</div>

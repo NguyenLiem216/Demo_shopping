@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityRole>
+@{
+    ViewData["Title"] = "Create Role";
+}
+<style>
+    .action-buttons {
+        display: flex;
+        justify-content: space-between; /* Căn nút về hai phía */
+        align-items: center;
+        margin-top: 10px; /* Khoảng cách từ phần trên */
+    }
+
+        .action-buttons .btn {
+            border-radius: 5px; /* Bo góc cho nút */
+        }
+</style>
+
+<div class="container">
+    <div class="container">
+        <h2 class="text-center my-4">Thêm vai trò mới</h2>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <form asp-action="Create" asp-controller="Roles" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label for="roleName">Tên vai trò</label>
+                        <input type="text" id="roleName" name="roleName" class="form-control" required />
+                    </div>
+                    <div class="mt-3 d-flex justify-content-between">
+                        <a asp-action="Index" class="btn btn-warning">
+                            <i class="fas fa-arrow-left"></i> Quay lại danh sách
+                        </a>
+                        <button type="submit" class="btn btn-success">
+                            <i class="fas fa-check"></i> Tạo
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
