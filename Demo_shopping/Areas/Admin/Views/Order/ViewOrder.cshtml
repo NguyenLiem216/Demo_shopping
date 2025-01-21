@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Demo_shopping.Models.OrderDetailsModel>
+
+@{
+    ViewData["Title"] = "Đơn hàng";
+}
+
+<div class="container-fluid pt-4 px-4">
+    <div class="bg-light rounded p-4">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+            <h3 class="mb-0">Danh sách đơn hàng</h3>
+            <a asp-action="Create" asp-controller="Category"
+               class="btn btn-primary btn-rounded px-4 py-2 d-flex align-items-center"
+               style="border-radius: 4px; margin-bottom: 10px">
+                <i class="fas fa-plus-circle me-2"></i> Thêm
+            </a>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-sm text-start align-middle table-bordered table-hover mb-0">
+
+                <thead>
+                    <tr class="text-dark">
+                        <th scope="col">#</th>
+                        <th scope="col">Mã đơn hàng</th>
+                        <th scope="col">Tên người đặt hàng</th>
+                        <th scope="col">Ngày tạo đơn hàng</th>
+                        <th scope="col">Trạng thái đơn hàng</th>
+                        <th scope="col">Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        int index = Model.Count();
+                    }
+                    @foreach (var product in Model)
+                    {
+                        <tr>
+                            <td>@index</td>
+                            <td>@product.OrderCode</td>
+                            @* <td>@product.UserName</td>
+                            <td>@product.CreatedDate</td>
+                            <td>
+                                @if (@product.Status == 1)
+                                {
+                                    <span class="text text-success">Đơn hàng mới</span>
+                                }
+                                else
+                                {
+                                    <span class="text text-danger">Đơn hàng đã duyệt</span>
+                                }
+                            </td> *@                            
+                        </tr>
+                        index--;
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

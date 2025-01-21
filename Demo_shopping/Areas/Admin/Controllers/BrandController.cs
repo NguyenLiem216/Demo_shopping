@@ -3,26 +3,23 @@ using Demo_shopping.Helpers;
 using Demo_shopping.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace Demo_shopping.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Authorize]
-
-    public class CategoryController : Controller
+    public class BrandController : Controller
     {
         private readonly DataContext _context;
 
-        public CategoryController(DataContext context)  
+        public BrandController(DataContext context)
         {
             _context = context;
         }
-
         public async Task<IActionResult> Index()
-        {            
-            return View(await _context.Categories.OrderByDescending(p=>p.Id).ToListAsync());
+        {
+            return View(await _context.Brands.OrderByDescending(b=>b.Id).ToListAsync());
         }
 
         [HttpGet]
@@ -30,26 +27,25 @@ namespace Demo_shopping.Areas.Admin.Controllers
         {
             return View();
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(CategoriesModel categories)
-        {            
+        public async Task<IActionResult> Create(BrandsModel brands)
+        {
             if (ModelState.IsValid)
             {
                 //Them du lieu
                 //categories.Slug = categories.Name.Replace(" ", "-");
-                categories.Slug = categories.Name.ToSlug();
-                var slug = await _context.Categories.FirstOrDefaultAsync(p => p.Slug == categories.Slug);
+                brands.Slug = brands.Name.ToSlug();
+                var slug = await _context.Brands.FirstOrDefaultAsync(p => p.Slug == brands.Slug);
                 if (slug != null)
                 {
-                    ModelState.AddModelError("", "Danh mục đã có trong database");
-                    return View(categories);
+                    ModelState.AddModelError("", "Thương hiệu đã có trong database");
+                    return View(brands);
                 }
 
-                _context.Add(categories);
+                _context.Add(brands);
                 await _context.SaveChangesAsync();
-                TempData["success"] = "Thêm danh mục thành công";
+                TempData["success"] = "Thêm thương hiệu thành công";
                 return RedirectToAction("Index");
             }
             else
@@ -67,31 +63,31 @@ namespace Demo_shopping.Areas.Admin.Controllers
                 string errorMessage = string.Join("\n", errors);
                 return BadRequest(errorMessage);
             }
-            return View(categories);
+            return View(brands);
         }
         public async Task<IActionResult> Edit(int Id)
         {
-            CategoriesModel categories = await _context.Categories.FindAsync(Id);
-            return View(categories);
+            BrandsModel brands = await _context.Brands.FindAsync(Id);
+            return View(brands);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(CategoriesModel categories)
+        public async Task<IActionResult> Edit(BrandsModel brands)
         {
             if (ModelState.IsValid)
             {
                 //Them du lieu
-                categories.Slug = categories.Name.Replace(" ", "-");
-                var slug = await _context.Categories.FirstOrDefaultAsync(p => p.Slug == categories.Slug);
+                brands.Slug = brands.Name.Replace(" ", "-");
+                var slug = await _context.Brands.FirstOrDefaultAsync(p => p.Slug == brands.Slug);
                 if (slug != null)
                 {
-                    ModelState.AddModelError("", "Danh mục đã có trong database");
-                    return View(categories);
+                    ModelState.AddModelError("", "Thương mục đã có trong database");
+                    return View(brands);
                 }
 
-                _context.Update(categories);
+                _context.Update(brands);
                 await _context.SaveChangesAsync();
-                TempData["success"] = "Cập nhật danh mục thành công";
+                TempData["success"] = "Cập nhật thương hiệu thành công";
                 return RedirectToAction("Index");
             }
             else
@@ -109,15 +105,15 @@ namespace Demo_shopping.Areas.Admin.Controllers
                 string errorMessage = string.Join("\n", errors);
                 return BadRequest(errorMessage);
             }
-            return View(categories);
+            return View(brands);
         }
 
         public async Task<IActionResult> Delete(int Id)
         {
-            CategoriesModel categories = await _context.Categories.FindAsync(Id);
-            _context.Categories.Remove(categories);
+            BrandsModel brands = await _context.Brands.FindAsync(Id);
+            _context.Brands.Remove(brands);
             await _context.SaveChangesAsync();
-            TempData["success"] = "Danh mục đã xóa";
+            TempData["success"] = "Thương hiệu đã xóa";
             return RedirectToAction("Index");
         }
     }

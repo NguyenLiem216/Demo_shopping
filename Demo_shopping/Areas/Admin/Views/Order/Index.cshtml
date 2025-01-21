@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Demo_shopping.Models.OrderModel>
+
+@{
+    ViewData["Title"] = "Đơn hàng";
+}
+
+<div class="container-fluid pt-4 px-4">
+    <div class="bg-light rounded p-4">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+            <h3 class="mb-0">Danh sách đơn hàng</h3>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-sm text-start align-middle table-bordered table-hover mb-0">
+
+                <thead>
+                    <tr class="text-dark">
+                        <th scope="col">#</th>
+                        <th scope="col">Mã đơn hàng</th>
+                        <th scope="col">Tên người đặt hàng</th>
+                        <th scope="col">Ngày tạo đơn hàng</th>          
+                        <th scope="col">Trạng thái đơn hàng</th>
+                        <th scope="col">Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        int index = Model.Count();
+                    }
+                    @foreach (var product in Model)
+                    {
+                        <tr>
+                            <td>@index</td>
+                            <td>@product.OrderCode</td>
+                            <td>@product.UserName</td>
+                            <td>@product.CreatedDate</td>
+                            <td>
+                                @if (@product.Status == 1)
+                                {
+                                    <span class="text text-success">Đơn hàng mới</span>
+                                }
+                                else
+                                {
+                                    <span class="text text-danger">Đơn hàng đã duyệt</span>
+                                }
+                            </td>
+                            <td>
+                                <a asp-action="ViewOrder" asp-controller="Order" asp-route-ordercode="@product.OrderCode" class="btn btn-sm btn-warning me-2">
+                                    <i class="fas fa-edit"></i> Xem đơn hàng
+                                </a>
+                                <a asp-action="Delete" asp-controller="Order" asp-route-Id="@product.Id" class="btn btn-sm btn-danger confirmDeletion">
+                                    <i class="fa fa-trash"></i> Xóa
+                                </a>
+                            </td>
+                        </tr>
+                        index--;
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

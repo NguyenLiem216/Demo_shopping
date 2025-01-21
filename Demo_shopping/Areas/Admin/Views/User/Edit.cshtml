@@ -1,0 +1,88 @@
+﻿@model AppUserModel
+@{
+    ViewData["Title"] = "Edit User";
+}
+<style>
+    .action-buttons {
+        display: flex;
+        justify-content: space-between; /* Căn nút về hai phía */
+        align-items: center;
+        margin-top: 10px; /* Khoảng cách từ phần trên */
+    }
+
+        .action-buttons .btn {
+            border-radius: 5px; /* Bo góc cho nút */
+        }
+</style>
+
+<h2 class="text-center my-4">Thêm tài khoản mới</h2>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Thông tin tài khoản</h4>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Edit" enctype="multipart/form-data">
+                        <input type="hidden" asp-for="Id" />
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+                        <!-- Tên -->
+                        <div class="mb-3">
+                            <label for="UserName" class="form-label">Tên tài khoản</label>
+                            <input asp-for="UserName" required class="form-control" />
+                            <span asp-validation-for="UserName" class="text-danger" />
+                        </div>
+
+                        <!-- Email -->
+                        <div class="mb-3">
+                            <label for="Email" class="form-label">Email</label>
+                            <input asp-for="Email" required class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger" />
+                        </div>
+
+                        <!-- Phone Number -->
+                        <div class="mb-3">
+                            <label for="PhoneNumber" class="form-label">Số điện thoại</label>
+                            <input asp-for="PhoneNumber" required class="form-control" />
+                            <span asp-validation-for="PhoneNumber" class="text-danger" />
+                        </div>
+
+                        <!-- Password -->
+                        <div class="mb-3">
+                            <label for="Password" class="form-label">Mật khẩu hiện tại</label>
+                            <input asp-for="PasswordHash" readonly required class="form-control" />
+                            <span asp-validation-for="PasswordHash" class="text-danger" />
+                        </div>
+
+                        <!-- Roles -->
+                        <div class="mb-3">
+                            <label for="RoleId" class="form-label">Vai trò</label>
+                            <select asp-for="RoleId" asp-items="ViewBag.Roles" class="form-control">
+                            </select>
+                            <span asp-validation-for="RoleId" class="text-danger" />
+                        </div>
+
+                        <!-- Nút hành động -->
+                        <div class="action-buttons">
+                            <a asp-action="Index" asp-controller="User" class="btn btn-warning">
+                                <i class="fa fa-arrow-left"></i> Quay lại danh sách
+                            </a>
+                            <button type="submit" class="btn btn-success">
+                                <i class="fa fa-check"></i> Sửa
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
